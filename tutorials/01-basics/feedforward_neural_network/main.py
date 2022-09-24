@@ -84,8 +84,9 @@ for epoch in tqdm(range(num_epochs)):
             train_losses.append(loss.item())
 
 plt.clf()
-plt.title('loss vs iteration')
-plt.plot(losses)
+plt.title('Train loss vs iteration')
+plt.plot(train_losses)
+plt.grid(True)
 plt.xlabel('iteration')
 plt.xlabel('loss')
 plt.savefig(os.path.join(RESULTS_DIR, 'train_loss.png'))
