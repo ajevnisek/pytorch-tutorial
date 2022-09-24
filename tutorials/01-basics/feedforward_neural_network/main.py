@@ -10,8 +10,12 @@ import torchvision.transforms as transforms
 from tqdm import tqdm
 
 
-RESULTS_DIR = '/results'
-os.makedirs(RESULTS_DIR, exist_ok=True)
+try:
+    RESULTS_DIR = '/results'
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+except:
+    RESULTS_DIR = '/tmp/results'
+    os.makedirs(RESULTS_DIR, exist_ok=True)
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
