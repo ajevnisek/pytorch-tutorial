@@ -1,8 +1,11 @@
+import os
 import torch
 import torch.nn as nn
 import torchvision
 import matplotlib.pyplot as plt
 import torchvision.transforms as transforms
+
+from common import RESULTS_DIR
 
 
 # Device configuration
