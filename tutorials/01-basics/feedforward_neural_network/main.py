@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 
 RESULTS_DIR = '/results'
-os.makedirs(RESULTS_DIR, exists_ok=True)
+os.makedirs(RESULTS_DIR, exist_ok=True)
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
