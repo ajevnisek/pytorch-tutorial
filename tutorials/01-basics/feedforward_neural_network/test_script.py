@@ -73,6 +73,6 @@ for batch in test_loader:
     _, predicted = torch.max(outputs.data, 1)
     if (predicted == labels).sum() != len(predicted):
         plot_images(images, labels, predicted, 10, 10)
-        plt.savefig('test_prediction.png')
+        plt.savefig(os.path.join(RESULTS_DIR, 'test_prediction.png'))
         break
 
