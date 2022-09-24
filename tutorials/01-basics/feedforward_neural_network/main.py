@@ -1,9 +1,14 @@
+import os
 import torch
 import torch.nn as nn
 import torchvision
 import torchvision.transforms as transforms
 
+from tqdm import tqdm
 
+
+RESULTS_DIR = '/results'
+os.makedirs(RESULTS_DIR, exists_ok=True)
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -56,7 +61,8 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 # Train the model
 total_step = len(train_loader)
-for epoch in range(num_epochs):
+train_losses = []
+for epoch in tqdm(range(num_epochs)):
     for i, (images, labels) in enumerate(train_loader):  
         # Move tensors to the configured device
         images = images.reshape(-1, 28*28).to(device)
@@ -72,8 +78,14 @@ for epoch in range(num_epochs):
         optimizer.step()
         
         if (i+1) % 100 == 0:
-            print ('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}' 
-                   .format(epoch+1, num_epochs, i+1, total_step, loss.item()))
+            train_losses.append(loss.item())
+
+plt.clf()
+plt.title('loss vs iteration')
+plt.plot(losses)
+plt.xlabel('iteration')
+plt.xlabel('loss')
+plt.savefig(os.path.join(RESULTS_DIR, 'train_loss.png'))
 
 # Test the model
 # In test phase, we don't need to compute gradients (for memory efficiency)
