@@ -79,3 +79,4 @@ for batch in test_loader:
         plt.savefig(os.path.join(RESULTS_DIR, 'test_prediction.png'))
         break
 
+print(f"Device: {device.type}")
