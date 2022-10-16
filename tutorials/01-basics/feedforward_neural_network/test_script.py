@@ -67,7 +67,7 @@ def plot_images(X, y, yp, M, N):
 
 
 model = NeuralNet(input_size, hidden_size, num_classes).to(device)
-model.load_state_dict(torch.load('model.ckpt'))
+model.load_state_dict(torch.load(os.path.join(RESULTS_DIR, 'model.ckpt')))
 for batch in test_loader:
     images, labels = batch
     images = images.reshape(-1, 28*28).to(device)
