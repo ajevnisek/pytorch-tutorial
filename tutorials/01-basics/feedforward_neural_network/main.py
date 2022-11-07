@@ -1,4 +1,6 @@
 import os
+import argparse
+
 import torch
 import torch.nn as nn
 
@@ -12,12 +14,19 @@ from tqdm import tqdm
 from common import RESULTS_DIR
 
 
+parser = argparse.ArgumentParser(description='Train a neural network for '
+                                             'MNIST classification.')
+parser.add_argument('--hidden_size', type=int, default=500,
+                    help='Hidden dimension of the network.')
+
+args = parser.parse_args()
+
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyper-parameters 
 input_size = 784
-hidden_size = 500
+hidden_size = args.hidden_size
 num_classes = 10
 num_epochs = 5
 batch_size = 100
